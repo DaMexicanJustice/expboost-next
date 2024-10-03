@@ -25,3 +25,7 @@ body {
     text-wrap: balance;
   }
 }
+
+.slide-offset {
+  transform: translateY(-1000px);
+}
