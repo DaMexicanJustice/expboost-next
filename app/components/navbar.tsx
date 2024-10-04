@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { User } from "lucide-react";
+import UserMenu from "./user-menu";
 
 export default function Navbar() {
   return (
@@ -181,10 +181,7 @@ m602 -1 c23 -21 26 -29 23 -80 l-3 -58 -48 61 c-47 58 -48 61 -31 80 22 24 27
         >
           About Us
         </Link>
-        <button className="text-white hover:text-opacity-50 transition-opacity duration-200">
-          <User className="size-6" />
-          <span className="sr-only">Account</span>
-        </button>
+        <UserMenu />
       </div>
     </nav>
   );
