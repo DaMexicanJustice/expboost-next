@@ -54,7 +54,7 @@ export default function MobileBurgerMenu() {
 
   return (
     <>
-      <div className="absolute w-full top-0 left-0 slide-offset slide-target">
+      <div className="fixed w-full top-0 left-0 slide-offset slide-target overflow-hidden">
         <MobileMenuOptions />
       </div>
       <div className="relative" ref={menuRef}>

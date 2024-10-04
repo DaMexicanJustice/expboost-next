@@ -3,12 +3,17 @@ import { BgVideo } from "../components/bg-video";
 export default function Hero() {
   return (
     <>
-      <section id="Hero-section" className="w-full h-svh z-20">
+      <section
+        id="Hero-section"
+        className="w-full h-[calc(100svh-4rem)]
+      xl:h-svh"
+      >
         <div className="flex flex-row h-full justify-center items-center">
           <div className="flex flex-col gap-6 uppercase">
             <div>
               <h1
-                className="text-6xl font-extrabold text-white leading-none uppercase tracking-tighter"
+                className="text-3xl font-extrabold text-white leading-none uppercase tracking-tighter
+                xl:text-6xl"
                 style={{
                   textShadow: "0 7px #0ea5e9, 0 15px #0ea5e9",
                 }}

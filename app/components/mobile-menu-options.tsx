@@ -2,7 +2,7 @@ import { Twitter, Instagram, Linkedin, Youtube } from "lucide-react";
 
 export default function MobileMenuOptions() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-zinc-900 text-white p-6">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-zinc-900 text-white p-6 overflow-scroll">
       <nav className="flex flex-col items-center space-y-4 mb-8">
         <a href="#" className="text-yellow-400 font-bold">
           Home
@@ -15,12 +15,15 @@ export default function MobileMenuOptions() {
         </a>
         <a href="#" className="font-bold flex items-center">
           Contact Us
-          <span className="ml-2 bg-white text-black rounded-full w-5 h-5 flex items-center justify-center text-xs">
-            2
-          </span>
         </a>
         <a href="#" className="font-bold">
           About Us
+        </a>
+        <a href="#" className="font-bold">
+          Login
+        </a>
+        <a href="#" className="font-bold">
+          Signup
         </a>
       </nav>
       <div className="flex space-x-6">
