@@ -5,7 +5,7 @@ import Hero from "./hero/page";
 
 export default function Home() {
   return (
-    <div id="container" className="w-full bg-purple-900">
+    <div id="container" className="w-full">
       <div id="navbar" className="hidden xl:block">
         <Navbar />
       </div>
@@ -16,7 +16,7 @@ export default function Home() {
         <div className="hidden xl:block">
           <StickySocials />
         </div>
-        <main id="sections" className="">
+        <main id="sections">
           <Hero />
         </main>
       </div>
