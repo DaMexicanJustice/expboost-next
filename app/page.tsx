@@ -1,4 +1,3 @@
-import Divider from "./components/divider";
 import MobileNavbar from "./components/mobile-navbar";
 import Navbar from "./components/navbar";
 import PollCta from "./components/poll-cta";
@@ -24,7 +23,6 @@ export default function Home() {
         </div>
         <main id="sections" className="">
           <Hero />
-          <Divider />
           <Latest />
         </main>
       </div>

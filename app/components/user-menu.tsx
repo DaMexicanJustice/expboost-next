@@ -29,7 +29,7 @@ export default function Component() {
           aria-label="User menu"
           aria-haspopup="true"
         >
-          <User className="h-6 w-6 text-white" />
+          <User className="h-6 w-6 text-white hover:opacity-50 transition-opacity" />
         </button>
         {isOpen && (
           <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
