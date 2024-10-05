@@ -1,4 +1,4 @@
-import { Twitter, Instagram, Linkedin, Youtube } from "lucide-react";
+import { Twitter, Instagram, Linkedin, Youtube, Twitch } from "lucide-react";
 import Link from "next/link";
 
 interface SocialLink {
@@ -8,6 +8,11 @@ interface SocialLink {
 }
 
 const socialLinks: SocialLink[] = [
+  {
+    icon: <Twitch size={24} />,
+    href: "https://tiktok.com",
+    label: "TikTok",
+  },
   {
     icon: <Twitter size={24} />,
     href: "https://twitter.com",
@@ -27,6 +32,11 @@ const socialLinks: SocialLink[] = [
     icon: <Youtube size={24} />,
     href: "https://youtube.com",
     label: "YouTube",
+  },
+  {
+    icon: <p className="uppercase text-xl font-bold text-center">P</p>,
+    href: "https://patreon.com",
+    label: "Patreon",
   },
 ];
 

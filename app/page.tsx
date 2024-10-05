@@ -1,7 +1,9 @@
-import About from "./about/about";
+import About from "./about/page";
+import Footer from "./components/footer";
 import MobileNavbar from "./components/mobile-navbar";
 import Navbar from "./components/navbar";
 import PollCta from "./components/poll-cta";
+import Signup from "./signup/page";
 import StickySocials from "./components/sticky-socials";
 import Hero from "./hero/page";
 import Latest from "./latest/page";
@@ -26,6 +28,8 @@ export default function Home() {
           <Hero />
           <Latest />
           <About />
+          <Signup />
+          <Footer />
         </main>
       </div>
     </div>
