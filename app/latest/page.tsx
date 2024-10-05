@@ -54,16 +54,16 @@ export default function Latest() {
     <section
       id="latest-episodes"
       className="w-full z-20 bg-slate-900
-      xl:bg-[url('/images/latest-bg.jpg')] xl:bg-cover xl:bg-center xl:bg-scroll xl:bg-no-repeat xl:h-svh"
+      xl:bg-[url('/images/latest-bg.jpg')] xl:bg-cover xl:bg-center xl:bg-fixed xl:bg-no-repeat"
     >
       <div
         id="latest-container"
-        className="flex flex-col h-full justify-center items-center"
+        className="flex flex-col h-full justify-center items-center p-4
+        xl:p-20"
       >
         <div
-          className="relative flex flex-col items-center gap-6 bg-sky-500 text-black rounded-3xl 
-          w-11/12 p-10
-        xl:p-20 xl:w-9/12 xl:h-[calc(100svh+4rem)]"
+          className="relative flex flex-col items-center gap-6 bg-sky-500 text-black rounded-3xl w-full p-4
+        xl:p-16 xl:w-9/12"
         >
           <h2 className="uppercase font-bold text-xl">Latest Episodes</h2>
           <EpisodeTile episodes={episodes} />

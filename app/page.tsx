@@ -1,3 +1,4 @@
+import About from "./about/about";
 import MobileNavbar from "./components/mobile-navbar";
 import Navbar from "./components/navbar";
 import PollCta from "./components/poll-cta";
@@ -21,9 +22,10 @@ export default function Home() {
         <div className="hidden xl:block">
           <PollCta />
         </div>
-        <main id="sections" className="">
+        <main id="sections">
           <Hero />
           <Latest />
+          <About />
         </main>
       </div>
     </div>

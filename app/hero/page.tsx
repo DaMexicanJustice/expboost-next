@@ -12,7 +12,7 @@ export default function Hero() {
           <div className="flex flex-col gap-6 uppercase">
             <div>
               <h1
-                className="text-3xl font-extrabold text-white leading-none uppercase tracking-tighter
+                className="text-xl font-extrabold text-white leading-none uppercase tracking-tighter
                 xl:text-6xl"
                 style={{
                   textShadow: "0 7px #0ea5e9, 0 15px #0ea5e9",

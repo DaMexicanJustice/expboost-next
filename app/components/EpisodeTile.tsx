@@ -11,14 +11,15 @@ const EpisodeTile: React.FC<EpisodeTileProps> = ({ episodes }) => {
   return (
     <div
       className="flex flex-col justify-center items-center gap-6 flex-wrap
-    xl:flex-row"
+    md:flex-row"
     >
       {episodes.map((episode, index) => (
         <div
           key={index}
           className="flex flex-col items-center gap-2 w-full 
           hover:opacity-50 hover:cursor-pointer transition-opacity
-        xl:w-3/12"
+          md:w-5/12
+        2xl:w-3/12"
         >
           <div
             id={`placeholder-image-${index}`}
