@@ -23,7 +23,7 @@ const EpisodeTile: React.FC<EpisodeTileProps> = ({ episodes }) => {
         >
           <div
             id={`placeholder-image-${index}`}
-            className="h-32 w-52 bg-blue-700 rounded-b-xl"
+            className="h-32 w-52 rounded-b-xl"
             style={{
               backgroundImage: `url(${episode.referenceImage})`,
               backgroundSize: "cover",

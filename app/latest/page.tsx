@@ -51,21 +51,17 @@ const episodes: Episode[] = [
 
 export default function Latest() {
   return (
-    <section
-      id="latest-episodes"
-      className="w-full z-20 bg-slate-900
-      xl:bg-[url('/images/latest-bg.jpg')] xl:bg-cover xl:bg-center xl:bg-fixed xl:bg-no-repeat"
-    >
+    <section id="latest-episodes" className="w-full z-20 bg-slate-950">
       <div
         id="latest-container"
         className="flex flex-col h-full justify-center items-center p-4
         xl:p-20"
       >
         <div
-          className="relative flex flex-col items-center gap-6 bg-sky-500 text-black rounded-3xl w-full p-4
+          className="relative flex flex-col items-center gap-6 rounded-3xl w-full p-4 bg-slate-900
         xl:p-16 xl:w-9/12"
         >
-          <h2 className="uppercase font-bold text-xl">Latest Episodes</h2>
+          <h2 className="text-xl uppercase font-bold">Episodes</h2>
           <EpisodeTile episodes={episodes} />
           <h3 className="uppercase text-sm font-bold hover:underline hover:opacity-50 hover:cursor-pointer w-fit">
             View More

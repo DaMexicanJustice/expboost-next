@@ -3,6 +3,7 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import VideoText from "./video-text";
 
 gsap.registerPlugin(ScrollTrigger);
 

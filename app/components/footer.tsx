@@ -1,10 +1,20 @@
 "use client";
 import Link from "next/link";
 import SignupButton from "./signup-button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronUp } from "lucide-react";
 import Socials from "./socials";
+import { RefObject, useRef } from "react";
+
+import { gsap } from "gsap";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+gsap.registerPlugin(ScrollToPlugin);
 
 export default function Footer() {
+  const ref: RefObject<HTMLDivElement> = useRef(null);
+  const handleScrollToTop = () => {
+    gsap.to(window, { duration: 2, scrollTo: 0 });
+  };
+
   return (
     <div
       className="flex flex-col gap-6 justify-between p-4 h-svh
@@ -41,11 +51,25 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="flex flex-row gap-2 justify-start items-start">
-        <h2 className="font-semibold uppercase">Find us on</h2>
-        <ArrowRight />
-        <div className="lg:hidden w-full">
-          <Socials />
+      <div
+        className="flex flex-row gap-2 justify-between items-center
+      lg:flex-col"
+      >
+        <div className="flex flex-row gap-2">
+          <h2 className="font-semibold uppercase">Find us on</h2>
+          <ArrowRight />
+          <div className="lg:hidden w-full">
+            <Socials />
+          </div>
+        </div>
+        <div
+          ref={ref}
+          onClick={handleScrollToTop}
+          className="flex flex-col justify-center items-center hover:opacity-50 transition-opacity
+        hover:cursor-pointer"
+        >
+          <ChevronUp className="size-10" />
+          <p>Top</p>
         </div>
       </div>
     </div>

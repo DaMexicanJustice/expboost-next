@@ -15,9 +15,11 @@ export default function VideoText({
 }: VideoTextProps) {
   return (
     <div
-      className="text-5xl font-bold xl:text-9xl"
+      className="text-5xl font-bold xl:text-[16rem] uppercase"
       style={{
-        backgroundImage: `linear-gradient(to top, ${startHex}, (${endHex}+70), url(${gifSrc})`,
+        background: `linear-gradient(to top, ${startHex}, ${
+          endHex + 10
+        }), url(${gifSrc})`,
         backgroundPosition: "center",
         backgroundSize: "auto, 80%",
         WebkitBackgroundClip: "text",
