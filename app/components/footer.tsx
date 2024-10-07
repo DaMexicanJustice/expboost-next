@@ -1,12 +1,12 @@
 "use client";
 import Link from "next/link";
-import SignupButton from "./signup-button";
 import { ArrowRight, ChevronUp } from "lucide-react";
 import Socials from "./socials";
 import { RefObject, useRef } from "react";
 
 import { gsap } from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import StandardButton from "./standard-button";
 gsap.registerPlugin(ScrollToPlugin);
 
 export default function Footer() {
@@ -39,16 +39,14 @@ export default function Footer() {
         <h2 className="font-semibold uppercase">Popular links</h2>
         <p>contact@expboost.com</p>
         <p>Alternatively</p>
-        <SignupButton text="Contact Form" />
+        <StandardButton text="Contact Form" />
       </div>
       <div className="flex flex-col gap-6 justify-start items-start">
         <h2 className="font-semibold uppercase">
           Join the party <br></br> & Boost your gaming insights!
         </h2>
-        <div className="flex flex-row gap-2">
-          <SignupButton text="Join on Twitch" />
-          <SignupButton text="Join the community" />
-        </div>
+        <StandardButton text="Join on Twitch" />
+        <StandardButton text="Join the community" />
       </div>
 
       <div
