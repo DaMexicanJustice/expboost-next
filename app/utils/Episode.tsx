@@ -1,6 +1,7 @@
 // Episode.ts
 export interface Episode {
-  episodeName: string;
-  episodeDate: string;
+  name: string;
+  date: string;
   referenceImage: string;
+  description: string;
 }
