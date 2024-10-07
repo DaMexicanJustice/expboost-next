@@ -34,13 +34,13 @@ const EpisodeTile: React.FC<EpisodeTileProps> = ({ episodes }) => {
               lg:bg-slate-900/70 transition-opacity duration-300"
             >
               <div className="flex flex-col gap-2 justify-end h-full p-2">
-                <p className="uppercase font-bold bg-slate-900/70 p-2 lg:p-0">
+                <p className="uppercase font-bold bg-slate-900/70 p-2 lg:bg-transparent lg:p-0">
                   {episode.name}
                 </p>
                 <p className="text-gray-300 hidden lg:block">
                   {episode.description}
                 </p>
-                <div className="flex flex-row gap-2 uppercase p-2 lg:p-0 text-sm bg-slate-900/70 lg:bg-none">
+                <div className="flex flex-row gap-2 uppercase p-2 lg:p-0 text-sm bg-slate-900/70 lg:bg-transparent lg:bg-none">
                   <CalendarClockIcon />
                   <p>Release: </p>
                   <p>{episode.date}</p>
