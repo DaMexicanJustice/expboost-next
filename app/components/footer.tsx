@@ -36,7 +36,7 @@ export default function Footer() {
       </div>
 
       <div className="flex flex-col gap-6 justify-start items-start">
-        <h2 className="font-semibold uppercase">Popular links</h2>
+        <h2 className="font-semibold uppercase">Contact</h2>
         <p>contact@expboost.com</p>
         <p>Alternatively</p>
         <StandardButton text="Contact Form" />
