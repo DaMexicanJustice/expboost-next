@@ -2,11 +2,11 @@ import About from "./about/page";
 import Footer from "./components/footer";
 import MobileNavbar from "./components/mobile-navbar";
 import Navbar from "./components/navbar";
-import PollCta from "./components/poll-cta";
 import Signup from "./signup/page";
 import StickySocials from "./components/sticky-socials";
 import Hero from "./hero/page";
 import Latest from "./latest/page";
+import Poll from "./components/poll";
 
 export default function Home() {
   return (
@@ -22,7 +22,7 @@ export default function Home() {
           <StickySocials />
         </div>
         <div className="hidden xl:block">
-          <PollCta />
+          <Poll />
         </div>
         <main id="sections">
           <Hero />
