@@ -8,12 +8,12 @@ export default function Hero() {
         className="w-full h-[calc(100svh-4rem)]
       xl:h-svh"
       >
-        <div className="flex flex-row h-full justify-center items-center">
+        <div className="flex flex-row h-full justify-center items-center mx-4">
           <div className="flex flex-col gap-6 uppercase">
             <div>
               <h1
-                className="text-xl font-extrabold text-white leading-none uppercase tracking-tighter
-                xl:text-6xl"
+                className="hidden font-extrabold text-white leading-none uppercase tracking-tighter
+                xl:block xl:text-6xl"
                 style={{
                   textShadow: "0 7px #0ea5e9, 0 15px #0ea5e9",
                 }}
@@ -21,6 +21,14 @@ export default function Hero() {
                 EXPBoost is gamified
                 <br />
                 podcast
+              </h1>
+              <h1
+                className="text-xl font-extrabold text-white leading-none uppercase tracking-tighter"
+                style={{
+                  textShadow: "0 2px #0ea5e9, 0 4px #0ea5e9",
+                }}
+              >
+                EXPBoost is gamified podcast
               </h1>
             </div>
             <p>Join us on a deepdive into game design.</p>
