@@ -23,7 +23,8 @@ export default function Hero() {
                 podcast
               </h1>
               <h1
-                className="text-xl font-extrabold text-white leading-none uppercase tracking-tighter"
+                className="text-xl font-extrabold text-white leading-none uppercase tracking-tighter
+                lg:hidden"
                 style={{
                   textShadow: "0 2px #0ea5e9, 0 4px #0ea5e9",
                 }}

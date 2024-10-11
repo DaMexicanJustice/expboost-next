@@ -7,16 +7,16 @@ export default function MobileMenuOptions() {
         <a href="#" className="text-yellow-400 font-bold">
           Home
         </a>
-        <a href="#" className="font-bold">
+        <a href="/episodes" className="font-bold">
           Episodes
         </a>
-        <a href="#" className="font-bold">
+        <a href="/blog" className="font-bold">
           Blog posts
         </a>
-        <a href="#" className="font-bold flex items-center">
+        <a href="/contact" className="font-bold flex items-center">
           Contact Us
         </a>
-        <a href="#" className="font-bold">
+        <a href="/about" className="font-bold">
           About Us
         </a>
         <a href="#" className="font-bold">

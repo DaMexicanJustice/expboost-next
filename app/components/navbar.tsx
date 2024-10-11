@@ -3,7 +3,7 @@ import UserMenu from "./user-menu";
 
 export default function Navbar() {
   return (
-    <nav className="w-full flex justify-between items-center bg-transparent absolute px-16">
+    <nav className="w-full flex justify-between items-center bg-transparent px-16">
       <Link href="/" className="text-white text-2xl font-bold">
         <span className="sr-only">Expboost</span>
         <svg
@@ -155,19 +155,19 @@ m602 -1 c23 -21 26 -29 23 -80 l-3 -58 -48 61 c-47 58 -48 61 -31 80 22 24 27
           HOME
         </Link>
         <Link
-          href="/games"
+          href="/episodes"
           className="text-white hover:text-opacity-50 transition-opacity"
         >
           Episodes
         </Link>
         <Link
-          href="/about"
+          href="/blog"
           className="text-white hover:text-opacity-50 transition-opacity"
         >
           Blog posts
         </Link>
         <Link
-          href="/jobs"
+          href="/contact"
           className="text-white hover:text-opacity-50 transition-opacity flex items-center"
         >
           Contact Us
@@ -176,7 +176,7 @@ m602 -1 c23 -21 26 -29 23 -80 l-3 -58 -48 61 c-47 58 -48 61 -31 80 22 24 27
           </span> */}
         </Link>
         <Link
-          href="/contact"
+          href="/about"
           className="text-white hover:text-opacity-50 transition-opacity"
         >
           About Us

@@ -95,14 +95,16 @@ export default function Latest() {
   }, []);
 
   // Get the episodes to render based on the screen size
-  const episodesToRender = isLargeScreen ? episodes : episodes.slice(-3);
+  const episodesToRender = isLargeScreen
+    ? episodes.slice(-5)
+    : episodes.slice(-3);
 
   return (
     <section id="latest-episodes" className="w-full z-20 bg-slate-950">
       <div
         id="latest-container"
         className="flex flex-col h-full p-4
-        xl:p-20"
+        xl:p-16"
       >
         <div className="flex flex-col gap-6 w-full items-center">
           <h2 className="text-lg uppercase font-bold">Latest Episodes</h2>

@@ -6,7 +6,7 @@ import Signup from "./signup/page";
 import StickySocials from "./components/sticky-socials";
 import Hero from "./hero/page";
 import Latest from "./latest/page";
-import Poll from "./components/poll";
+import PollRender from "./components/poll-render";
 
 export default function Home() {
   return (
@@ -22,7 +22,7 @@ export default function Home() {
           <StickySocials />
         </div>
         <div className="hidden xl:block">
-          <Poll />
+          <PollRender />
         </div>
         <main id="sections">
           <Hero />

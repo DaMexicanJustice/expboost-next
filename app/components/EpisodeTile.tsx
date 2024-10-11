@@ -11,26 +11,26 @@ interface EpisodeTileProps {
 const EpisodeTile: React.FC<EpisodeTileProps> = ({ episodes }) => {
   return (
     <div
-      className="flex flex-col justify-center items-center gap-3 flex-wrap
+      className="flex flex-col gap-3 flex-wrap
     md:flex-row"
     >
       {episodes.map((episode, index) => (
         <div
           key={index}
-          className="flex flex-col items-center gap-2 w-full hover:cursor-pointer group
-          lg:flex-row lg:w-fit"
+          className="flex flex-col gap-2 hover:cursor-pointer group w-fit
+          md:flex-row"
         >
-          <div className="relative size-80 overflow-hidden">
+          <div className="relative overflow-hidden grow">
             <Image
               id={`placeholder-image-${index}`}
               width={320}
               height={320}
-              alt="reference-image"
+              alt={episode.name}
               src={episode.referenceImage}
               className="object-cover h-full group-hover:scale-105 duration-300 transition-transform"
             />
             <div
-              className="lg:opacity-0 hover:opacity-100 absolute top-0 left-0 h-full w-full 
+              className="lg:opacity-0 hover:opacity-100 absolute top-0 left-0 h-full w-fit
               lg:bg-slate-900/70 transition-opacity duration-300"
             >
               <div className="flex flex-col gap-2 justify-end h-full p-2">

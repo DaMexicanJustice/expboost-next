@@ -22,7 +22,7 @@ export default function Poll() {
   return (
     <>
       <div
-        className="fixed bottom-10 left-10 flex flex-col items-center
+        className="fixed bottom-10 left-10 flex flex-col items-center z-50
         hover:cursor-pointer hover:opacity-50 transition-opacity"
         onClick={togglePoll}
       >

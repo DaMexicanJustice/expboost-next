@@ -42,7 +42,7 @@ const socialLinks: SocialLink[] = [
 
 export default function StickySocials() {
   return (
-    <div className="fixed right-0 top-1/2 -translate-y-1/2 bg-opacity-100 p-2 rounded-l-lg">
+    <div className="fixed right-0 top-1/2 -translate-y-1/2 bg-opacity-100 p-2 rounded-l-lg z-50">
       <ul className="flex flex-col space-y-4">
         {socialLinks.map((link) => (
           <li key={link.label}>
