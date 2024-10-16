@@ -106,9 +106,13 @@ export default function Latest() {
         className="flex flex-col h-full p-4
         xl:p-16"
       >
-        <div className="flex flex-col gap-6 w-full items-center">
+        <div className="flex flex-col gap-6 w-full justify-center items-center">
           <h2 className="text-lg uppercase font-bold">Latest Episodes</h2>
-          <EpisodeTile episodes={episodesToRender} />
+          <EpisodeTile
+            justifyCenter="justify-center"
+            itemsCenter="items-center"
+            episodes={episodesToRender}
+          />
           <h3 className="uppercase text-xl font-bold hover:underline hover:opacity-50 hover:cursor-pointer w-fit">
             To All Episodes
           </h3>

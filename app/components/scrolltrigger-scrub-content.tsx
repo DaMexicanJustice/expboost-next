@@ -26,9 +26,10 @@ export default function ScrolltriggerScrubContent({
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerElement,
-        start: "top 20%", // Starts when the top of the container is 20% from the top of the viewport
-        end: "bottom 80%", // Ends when the bottom of the container is 20% from the top of the viewport
-        pin: true,
+        start: "top top", // Starts when the top of the container is 20% from the top of the viewport
+        end: "bottom center", // Ends when the bottom of the container is 20% from the top of the viewport
+        pin: "#pinned-element",
+        pinSpacing: true,
       },
     });
 
@@ -37,11 +38,7 @@ export default function ScrolltriggerScrubContent({
       tl.kill();
       ScrollTrigger.getAll().forEach((st) => st.kill());
     };
-  }, [target]);
+  }, [target, children]);
 
-  return (
-    <div ref={containerRef} className="relative">
-      {children}
-    </div>
-  );
+  return <div ref={containerRef}>{children}</div>;
 }

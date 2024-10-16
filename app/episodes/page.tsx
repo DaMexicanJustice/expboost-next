@@ -1,14 +1,15 @@
 "use client";
-import { useRef } from "react";
+import React, { useRef } from "react";
 import BroadcastTime from "../components/broadcast-time";
 import EpisodeTile from "../components/EpisodeTile";
 import Footer from "../components/footer";
 import MobileNavbar from "../components/mobile-navbar";
 import Navbar from "../components/navbar";
-import ScrolltriggerScrubContent from "../components/scrolltrigger-scrub-content";
 import StandardButton from "../components/standard-button";
-import StreamingPlatforms from "../components/streaming-platforms";
 import { Episode } from "../utils/Episode";
+import StickySocials from "../components/sticky-socials";
+import UpcomingBroadcasts from "../components/upcoming-broadcasts";
+import ScrolltriggerScrubContent from "../components/scrolltrigger-scrub-content";
 
 const episodes: Episode[] = [
   {
@@ -182,12 +183,12 @@ const episodes: Episode[] = [
 ];
 
 export default function Episodes() {
-  const text = "Watch Where You View Livestreams";
-  const words = text.split(" ");
-  const targetRef = useRef<HTMLDivElement>(null);
-
+  const ref = useRef(null);
   return (
     <div id="container" className="w-full flex flex-col gap-0">
+      <div className="hidden md:block">
+        <StickySocials />
+      </div>
       <div id="navbar" className="hidden xl:block">
         <Navbar />
       </div>
@@ -212,24 +213,20 @@ export default function Episodes() {
                 </span>
               </h2>
 
-              <div className="flex flex-row gap-6">
-                <div className="w-10/12">
-                  <EpisodeTile episodes={episodes}></EpisodeTile>
+              <div
+                className="flex flex-col gap-6 
+              md:flex-row"
+              >
+                <div className="basis-10/12">
+                  <EpisodeTile
+                    justifyCenter=""
+                    itemsCenter="items-center"
+                    episodes={episodes}
+                  ></EpisodeTile>
                 </div>
-                <ScrolltriggerScrubContent target={targetRef}>
-                  <div
-                    ref={targetRef}
-                    className="flex flex-col w-2/12 items-center gap-6"
-                  >
-                    {words.map((word, index) => (
-                      <h3
-                        key={index}
-                        className="font-bold text-3xl text-center"
-                      >
-                        {word}
-                      </h3>
-                    ))}
-                    <StreamingPlatforms />
+                <ScrolltriggerScrubContent target={ref}>
+                  <div className="hidden md:block" ref={ref}>
+                    <UpcomingBroadcasts />
                   </div>
                 </ScrolltriggerScrubContent>
               </div>
@@ -240,8 +237,8 @@ export default function Episodes() {
             </div>
           </section>
         </main>
-        <Footer />
       </div>
+      <Footer />
     </div>
   );
 }

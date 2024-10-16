@@ -6,13 +6,19 @@ import Image from "next/image";
 
 interface EpisodeTileProps {
   episodes: Episode[];
+  justifyCenter: string;
+  itemsCenter: string;
 }
 
-const EpisodeTile: React.FC<EpisodeTileProps> = ({ episodes }) => {
+const EpisodeTile: React.FC<EpisodeTileProps> = ({
+  episodes,
+  justifyCenter,
+  itemsCenter,
+}) => {
   return (
     <div
-      className="flex flex-col gap-3 flex-wrap
-    md:flex-row"
+      className={`flex flex-col gap-3 flex-wrap ${justifyCenter} ${itemsCenter}
+    md:flex-row`}
     >
       {episodes.map((episode, index) => (
         <div
@@ -27,7 +33,7 @@ const EpisodeTile: React.FC<EpisodeTileProps> = ({ episodes }) => {
               height={320}
               alt={episode.name}
               src={episode.referenceImage}
-              className="object-cover h-full group-hover:scale-105 duration-300 transition-transform"
+              className="object-cover h-80 group-hover:scale-105 duration-300 transition-transform"
             />
             <div
               className="lg:opacity-0 hover:opacity-100 absolute top-0 left-0 h-full w-fit
