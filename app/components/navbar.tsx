@@ -161,7 +161,7 @@ m602 -1 c23 -21 26 -29 23 -80 l-3 -58 -48 61 c-47 58 -48 61 -31 80 22 24 27
           Episodes
         </Link>
         <Link
-          href="/blog"
+          href="/blog-posts"
           className="text-white hover:text-opacity-50 transition-opacity"
         >
           Blog posts

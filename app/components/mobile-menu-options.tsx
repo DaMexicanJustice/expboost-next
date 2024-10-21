@@ -10,7 +10,7 @@ export default function MobileMenuOptions() {
         <a href="/episodes" className="font-bold">
           Episodes
         </a>
-        <a href="/blog" className="font-bold">
+        <a href="/blog-posts" className="font-bold">
           Blog posts
         </a>
         <a href="/contact" className="font-bold flex items-center">
