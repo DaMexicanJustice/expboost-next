@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import SignupButton from "../components/signup-button";
+import CreateAvatarButton from "../components/create-avatar-button";
 
 export default function Signup() {
   return (
@@ -19,7 +19,7 @@ export default function Signup() {
             Vote, create, participate, earn and more!
           </h2>
           <p className="text-xl mb-4">Become part of the community</p>
-          <SignupButton text="Create Avatar" />
+          <CreateAvatarButton text="Create Avatar" />
         </div>
       </div>
     </section>

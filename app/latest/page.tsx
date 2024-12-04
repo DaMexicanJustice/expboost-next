@@ -101,19 +101,11 @@ export default function Latest() {
 
   return (
     <section id="latest-episodes" className="w-full z-20 bg-slate-950">
-      <div
-        id="latest-container"
-        className="flex flex-col h-full p-4
-        xl:p-16"
-      >
-        <div className="flex flex-col gap-6 w-full justify-center items-center">
+      <div id="latest-container" className="p-4 xl:p-16">
+        <div className="grid w-full gap-6 justify-items-center">
           <h2 className="text-lg uppercase font-bold">Latest Episodes</h2>
-          <EpisodeTile
-            justifyCenter="justify-center"
-            itemsCenter="items-center"
-            episodes={episodesToRender}
-          />
-          <h3 className="uppercase text-xl font-bold hover:underline hover:opacity-50 hover:cursor-pointer w-fit">
+          <EpisodeTile episodes={episodesToRender} />
+          <h3 className="uppercase text-xl font-bold hover:underline hover:opacity-50 hover:cursor-pointer justify-self-center">
             To All Episodes
           </h3>
         </div>
