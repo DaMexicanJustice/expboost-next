@@ -218,11 +218,7 @@ export default function Episodes() {
               md:flex-row"
               >
                 <div className="basis-10/12">
-                  <EpisodeTile
-                    justifyCenter=""
-                    itemsCenter="items-center"
-                    episodes={episodes}
-                  ></EpisodeTile>
+                  <EpisodeTile episodes={episodes}></EpisodeTile>
                 </div>
                 <ScrolltriggerScrubContent target={ref}>
                   <div className="hidden md:block" ref={ref}>
