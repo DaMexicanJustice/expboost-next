@@ -102,7 +102,7 @@ export default function Latest() {
   return (
     <section id="latest-episodes" className="w-full z-20 bg-slate-950">
       <div id="latest-container" className="p-4 xl:p-16">
-        <div className="grid w-full gap-6 justify-center items-center">
+        <div className="grid w-full gap-6">
           <h2 className="text-lg uppercase font-bold">Latest Episodes</h2>
           <EpisodeTile episodes={episodesToRender} />
           <h3 className="uppercase text-xl font-bold hover:underline hover:opacity-50 hover:cursor-pointer justify-self-center">
