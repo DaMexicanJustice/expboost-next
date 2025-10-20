@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import EpisodeTile from "../components/EpisodeTile";
 import { Episode } from "../utils/Episode";
+import Link from "next/link";
 
 const episodes: Episode[] = [
   {
@@ -105,9 +106,9 @@ export default function Latest() {
         <div className="grid w-full gap-6">
           <h2 className="text-lg uppercase font-bold">Latest Episodes</h2>
           <EpisodeTile episodes={episodesToRender} />
-          <h3 className="uppercase text-xl font-bold hover:underline hover:opacity-50 hover:cursor-pointer justify-self-center">
+          <Link href="/episodes" className="uppercase text-xl font-bold hover:underline hover:opacity-50 hover:cursor-pointer justify-self-center">
             To All Episodes
-          </h3>
+          </Link>
         </div>
       </div>
     </section>

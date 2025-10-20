@@ -1,10 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 
 export default function Poll() {
   const [isPollVisible, setIsPollVisible] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
+  const [isAnimatingOut, setIsAnimatingOut] = useState(false);
 
   const handleScrollToSection = () => {
     const sectionId = "signup"; // Replace with the actual id of the section you want to scroll to
@@ -14,9 +16,20 @@ export default function Poll() {
     }
   };
 
-  const togglePoll = () => {
+  const togglePollAndScroll = () => {
     setIsPollVisible(!isPollVisible);
     if (isPollVisible) handleScrollToSection();
+  };
+
+  const togglePoll = () => {
+    setIsAnimatingOut(!isAnimatingOut);
+    if (isAnimatingOut == false) {
+      setIsPollVisible(!isPollVisible);
+    } else {
+      setTimeout(() => {
+        setIsPollVisible(!isPollVisible);
+      }, 300)
+    }
   };
 
   return (
@@ -69,34 +82,45 @@ export default function Poll() {
       </div>
 
       {isPollVisible && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              togglePoll();
+            }
+          }}>
           <div
             className="bg-[#1a2b3c] text-white p-8 rounded-lg shadow-lg w-11/12 transform transition-transform duration-300 ease-in-out
             lg:w-4/12"
             style={{
-              animation: "slideIn 0.3s ease-out",
+              animation: isAnimatingOut ? "slideIn 0.3s ease-out" : "slideOut 0.3s ease-out",
             }}
           >
             <h2 className="text-2xl font-bold mb-4">
               What is your favorite game genre?
             </h2>
-            <form className="space-y-4">
+            <div className="grid grid-cols-2 gap-4">
               {["Action", "RPG", "Strategy", "Simulation"].map((option) => (
-                <label key={option} className="flex items-center space-x-2">
-                  <input
-                    type="radio"
-                    name="poll"
-                    value={option}
-                    checked={selectedOption === option}
-                    onChange={(e) => setSelectedOption(e.target.value)}
-                    className="form-radio text-[#4a90e2]"
+                <div
+                  key={option}
+                  className={`relative cursor-pointer rounded-lg overflow-hidden ${selectedOption === option ? 'ring-2 ring-[#4a90e2]' : ''
+                    }`}
+                  onClick={() => setSelectedOption(option)}
+                >
+                  <Image
+                    src="/images/200x200.jpg"
+                    alt={option}
+                    className="w-full h-32 object-cover"
+                    height={200}
+                    width={200}
                   />
-                  <span>{option}</span>
-                </label>
+                  <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white font-bold text-lg">
+                    {option}
+                  </div>
+                </div>
               ))}
-            </form>
+            </div>
             <button
-              onClick={togglePoll}
+              onClick={togglePollAndScroll}
               className="mt-6 bg-[#4a90e2] text-white px-4 py-2 rounded hover:bg-[#3a7bc8] transition-colors"
             >
               Vote
@@ -108,10 +132,18 @@ export default function Poll() {
       <style jsx>{`
         @keyframes slideIn {
           from {
-            transform: translateX(-100%);
+            transform: translateX(-300%);
           }
           to {
             transform: translateX(0);
+          }
+        }
+          @keyframes slideOut {
+          from {
+            transform: translateX(0);
+          }
+          to {
+            transform: translateX(-300%);
           }
         }
       `}</style>

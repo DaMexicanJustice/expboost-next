@@ -1,5 +1,4 @@
 "use client";
-import React, { useRef } from "react";
 import BroadcastTime from "../components/broadcast-time";
 import EpisodeTile from "../components/EpisodeTile";
 import Footer from "../components/footer";
@@ -8,8 +7,6 @@ import Navbar from "../components/navbar";
 import StandardButton from "../components/standard-button";
 import { Episode } from "../utils/Episode";
 import StickySocials from "../components/sticky-socials";
-import UpcomingBroadcasts from "../components/upcoming-broadcasts";
-import ScrolltriggerScrubContent from "../components/scrolltrigger-scrub-content";
 
 const episodes: Episode[] = [
   {
@@ -183,7 +180,6 @@ const episodes: Episode[] = [
 ];
 
 export default function Episodes() {
-  const ref = useRef(null);
   return (
     <div id="container" className="w-full flex flex-col gap-0">
       <div className="hidden md:block">
@@ -220,11 +216,6 @@ export default function Episodes() {
                 <div className="basis-10/12">
                   <EpisodeTile episodes={episodes}></EpisodeTile>
                 </div>
-                <ScrolltriggerScrubContent target={ref}>
-                  <div className="hidden md:block" ref={ref}>
-                    <UpcomingBroadcasts />
-                  </div>
-                </ScrolltriggerScrubContent>
               </div>
 
               <div className="self-start">
