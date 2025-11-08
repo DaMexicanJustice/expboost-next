@@ -5,9 +5,14 @@ export default function Hero() {
     <>
       <section
         id="Hero-section"
-        className="w-full h-[calc(100svh-4rem)]
-      xl:h-svh"
+        className="relative w-full h-[calc(100svh-4rem)]
+      xl:h-svh overflow-hidden"
       >
+        <div
+          className="top-0 left-0 absolute h-[calc(100svh-4rem)] xl:h-svh w-full object-cover -z-10
+          bg-black/60"
+        ></div>
+        <BgVideo />
         <div className="flex flex-row h-full justify-center items-center mx-4">
           <div className="flex flex-col gap-6 uppercase">
             <div>
@@ -37,11 +42,6 @@ export default function Hero() {
           </div>
         </div>
       </section>
-      <div
-        className="top-0 left-0 absolute h-svh w-full object-cover -z-10
-        bg-black/60"
-      ></div>
-      <BgVideo />
     </>
   );
 }

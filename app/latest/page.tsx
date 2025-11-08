@@ -77,6 +77,8 @@ const episodes: Episode[] = [
   },
 ];
 
+const layoutPattern = [true, true, true, true, true]
+
 export default function Latest() {
   const [isLargeScreen, setIsLargeScreen] = useState(false);
 
@@ -105,7 +107,7 @@ export default function Latest() {
       <div id="latest-container" className="p-4 xl:p-16">
         <div className="grid w-full gap-6">
           <h2 className="text-lg uppercase font-bold">Latest Episodes</h2>
-          <EpisodeTile episodes={episodesToRender} />
+          <EpisodeTile episodes={episodesToRender} pattern={layoutPattern} />
           <Link href="/episodes" className="uppercase text-xl font-bold hover:underline hover:opacity-50 hover:cursor-pointer justify-self-center">
             To All Episodes
           </Link>

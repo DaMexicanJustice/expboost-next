@@ -1,9 +1,15 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import UserMenu from "./user-menu";
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const isLandingPage = pathname === "/";
+
   return (
-    <nav className="w-full flex justify-between items-center bg-transparent px-16">
+    <nav className={`w-full flex justify-between items-center bg-transparent px-16 ${isLandingPage ? 'absolute z-50' : 'relative'}`}>
       <Link href="/" className="text-white text-2xl font-bold">
         <span className="sr-only">Expboost</span>
         <svg

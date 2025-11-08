@@ -1,13 +1,64 @@
-"use client";
-import BroadcastTime from "../components/broadcast-time";
-import EpisodeTile from "../components/EpisodeTile";
-import Footer from "../components/footer";
-import MobileNavbar from "../components/mobile-navbar";
-import Navbar from "../components/navbar";
-import { Episode } from "../utils/Episode";
-import StickySocials from "../components/sticky-socials";
-import StandardButton from "../components/standard-button";
+# Episode Tile Grid Animation Specification
 
+## Overview
+
+This document outlines the logic and behavior for animating episode tiles in a 6×6 grid using classic Tetris block shapes. The animation mimics the gameplay of Tetris, where blocks scroll upward and lock into place at the top of the grid.  
+
+We will use **GSAP** and **ScrollTrigger** to animate the blocks with scrubbing for scroll-based control.
+
+---
+
+## Grid Details
+
+- **Grid Size**: 6 columns × 6 rows  
+- **Total Tiles**: 36 tiles  
+- **Tile Type**: Each tile represents an episode  
+- **Goal**: Fill the entire grid with episode tiles using Tetris blocks  
+
+---
+
+## Tetris Block Constraints
+
+- **Block Size**: Each Tetris block consists of 4 tiles  
+- **Total Blocks Needed**:  
+  \[
+  \frac{6 \cdot 6}{4} = 9 \text{ blocks}
+  \]
+
+- **Allowed Block Types** (classic Tetris):
+  - `I` (straight line)
+  - `O` (square)
+  - `T` (T-shape)
+  - `L` (L-shape)
+  - `J` (reverse L)
+  - `S` (zigzag)
+  - `Z` (reverse zigzag)
+
+---
+
+## Block Composition Example
+
+To fill the grid completely, use the following combination of blocks:
+
+| Block Type | Count | Notes |
+|------------|-------|-------|
+| I          | 2     | Vertical or horizontal |
+| O          | 2     | Fits 2×2 sections |
+| T          | 1     | Center or edge filler |
+| L          | 2     | Corner filler |
+| S          | 1     | Zigzag filler |
+| Z          | 1     | Complements S |
+
+- **Total Blocks**: 9  
+- **Total Tiles**: \(9 \cdot 4 = 36\)  
+
+---
+
+## Episode Test Data
+
+Below is sample data for mapping episodes to tiles:
+
+```ts
 const episodes: Episode[] = [
   {
     name: "The Art of Storytelling",
@@ -178,110 +229,3 @@ const episodes: Episode[] = [
       "Discuss the social aspects of gaming, including multiplayer experiences, online communities, and the role of games in social interaction.",
   },
 ];
-
-const layoutPatterns = {
-  I: new Array(36).fill(false),
-  O: new Array(36).fill(false),
-  T: new Array(36).fill(false),
-  L: new Array(36).fill(false),
-  J: new Array(36).fill(false),
-  S: new Array(36).fill(false),
-  Z: new Array(36).fill(false),
-};
-
-// I block (horizontal)
-layoutPatterns.I[0] = true;
-layoutPatterns.I[1] = true;
-layoutPatterns.I[2] = true;
-layoutPatterns.I[3] = true;
-
-// O block
-layoutPatterns.O[0] = true;
-layoutPatterns.O[1] = true;
-layoutPatterns.O[6] = true;
-layoutPatterns.O[7] = true;
-
-// T block
-layoutPatterns.T[1] = true;
-layoutPatterns.T[6] = true;
-layoutPatterns.T[7] = true;
-layoutPatterns.T[8] = true;
-
-// L block
-layoutPatterns.L[0] = true;
-layoutPatterns.L[6] = true;
-layoutPatterns.L[7] = true;
-layoutPatterns.L[8] = true;
-
-// J block
-layoutPatterns.J[2] = true;
-layoutPatterns.J[6] = true;
-layoutPatterns.J[7] = true;
-layoutPatterns.J[8] = true;
-
-// S block
-layoutPatterns.S[1] = true;
-layoutPatterns.S[2] = true;
-layoutPatterns.S[6] = true;
-layoutPatterns.S[7] = true;
-
-// Z block
-layoutPatterns.Z[0] = true;
-layoutPatterns.Z[1] = true;
-layoutPatterns.Z[7] = true;
-layoutPatterns.Z[8] = true;
-
-const patterns = ['I', 'O', 'T', 'L', 'J', 'S', 'Z'];
-const currentPatternIndex = 0;
-
-export default function Episodes() {
-
-  return (
-    <div id="container" className="w-full flex flex-col gap-0">
-      <div className="hidden md:block">
-        <StickySocials />
-      </div>
-      <div id="navbar" className="hidden xl:block">
-        <Navbar />
-      </div>
-      <div className="xl:hidden">
-        <MobileNavbar />
-      </div>
-      <div id="content" className="">
-        <main id="content" className="bg-slate-800">
-          <section id="Episodes">
-            <div
-              className="flex flex-col p-4 gap-6 z-0
-            md:p-8
-            xl:p-16"
-            >
-              <h1 className="text-xl lg:text-4xl z-0 self-center">
-                Level up with these past broadcasts.
-              </h1>
-              <h2 className="self-center">
-                Do not miss the next cast!{" "}
-                <span className="text-amber-500 font-semibold">
-                  <BroadcastTime />
-                </span>
-              </h2>
-
-              <div
-                className="flex flex-col gap-6
-              md:flex-row"
-              >
-                <div className="basis-10/12">
-                  <EpisodeTile episodes={episodes} pattern={layoutPatterns[patterns[currentPatternIndex] as keyof typeof layoutPatterns]}></EpisodeTile>
-                </div>
-              </div>
-
-              <div className="self-start">
-                <StandardButton text="Load More" />
-              </div>
-            </div>
-          </section>
-        </main>
-      </div>
-      <Footer />
-    </div>
-  );
-}
