@@ -1,8 +1,8 @@
 "use client";
-import { useEffect, useState } from "react";
 import EpisodeTile from "../components/EpisodeTile";
 import { Episode } from "../utils/Episode";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 
 const episodes: Episode[] = [
   {
@@ -77,37 +77,38 @@ const episodes: Episode[] = [
   },
 ];
 
-const layoutPattern = [true, true, true, true, true]
-
 export default function Latest() {
-  const [isLargeScreen, setIsLargeScreen] = useState(false);
+  const [numTiles, setNumTiles] = useState(5);
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsLargeScreen(window.innerWidth >= 1024);
+    const calculateNumTiles = () => {
+      const screenWidth = window.innerWidth;
+      const padding = screenWidth >= 1280 ? 128 : 32;
+      const available = screenWidth - padding;
+      const tileWidth = 208;
+      const gap = 12;
+      const maxN = Math.floor((available + gap) / (tileWidth + gap));
+      setNumTiles(Math.max(1, maxN));
     };
 
-    // Set initial value
-    handleResize();
-
-    // Add event listener
-    window.addEventListener("resize", handleResize);
-
-    // Clean up event listener on component unmount
-    return () => window.removeEventListener("resize", handleResize);
+    calculateNumTiles();
+    window.addEventListener('resize', calculateNumTiles);
+    return () => window.removeEventListener('resize', calculateNumTiles);
   }, []);
 
   // Get the episodes to render based on the screen size
-  const episodesToRender = isLargeScreen
-    ? episodes.slice(-5)
-    : episodes.slice(-3);
+  const episodesToRender = episodes.slice(-numTiles);
 
   return (
     <section id="latest-episodes" className="w-full z-20 bg-slate-950">
       <div id="latest-container" className="p-4 xl:p-16">
-        <div className="grid w-full gap-6">
+        <div className="flex flex-col items-center justify-between w-full gap-6">
           <h2 className="text-lg uppercase font-bold">Latest Episodes</h2>
-          <EpisodeTile episodes={episodesToRender} pattern={layoutPattern} />
+          <div className="flex flex-row gap-3 overflow-x-auto">
+            {episodesToRender.map((ep, i) => (
+              <EpisodeTile key={i} episode={ep} />
+            ))}
+          </div>
           <Link href="/episodes" className="uppercase text-xl font-bold hover:underline hover:opacity-50 hover:cursor-pointer justify-self-center">
             To All Episodes
           </Link>

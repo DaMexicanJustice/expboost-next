@@ -270,7 +270,19 @@ export default function Episodes() {
               md:flex-row"
               >
                 <div className="basis-10/12">
-                  <EpisodeTile episodes={episodes} pattern={layoutPatterns[patterns[currentPatternIndex] as keyof typeof layoutPatterns]}></EpisodeTile>
+                  <div className="grid gap-3 w-full max-w-4xl mx-auto grid-cols-6">
+                    {(() => {
+                      let episodeIndex = 0;
+                      return layoutPatterns[patterns[currentPatternIndex] as keyof typeof layoutPatterns].map((isEpisode, index) => {
+                        if (isEpisode && episodeIndex < episodes.length) {
+                          const episode = episodes[episodeIndex++];
+                          return <EpisodeTile key={index} episode={episode} />;
+                        } else {
+                          return <div key={index} className="aspect-square"></div>;
+                        }
+                      });
+                    })()}
+                  </div>
                 </div>
               </div>
 
