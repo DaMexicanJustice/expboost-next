@@ -7,6 +7,16 @@ import Navbar from "../components/navbar";
 import { Episode } from "../utils/Episode";
 import StickySocials from "../components/sticky-socials";
 import StandardButton from "../components/standard-button";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLayoutEffect, useRef } from "react";
+
+gsap.registerPlugin(ScrollTrigger);
+
+interface Group {
+  episodes: Episode[];
+  shape: string;
+}
 
 const episodes: Episode[] = [
   {
@@ -179,62 +189,137 @@ const episodes: Episode[] = [
   },
 ];
 
-const layoutPatterns = {
-  I: new Array(36).fill(false),
-  O: new Array(36).fill(false),
-  T: new Array(36).fill(false),
-  L: new Array(36).fill(false),
-  J: new Array(36).fill(false),
-  S: new Array(36).fill(false),
-  Z: new Array(36).fill(false),
+const groups: Group[] = [
+  { episodes: episodes.slice(0, 4), shape: 'I' },
+  { episodes: episodes.slice(4, 8), shape: 'O' },
+  { episodes: episodes.slice(8, 12), shape: 'T' },
+  { episodes: episodes.slice(12, 16), shape: 'S' },
+  { episodes: episodes.slice(16, 20), shape: 'Z' },
+  { episodes: episodes.slice(20, 24), shape: 'L' },
+];
+
+const TetrisGroup = ({ group }: { group: Group }) => {
+  const { shape, episodes } = group;
+  let gridTemplateAreas = '';
+  let gridClass = 'grid gap-6';
+  let width = '';
+  switch (shape) {
+    case 'I':
+      gridTemplateAreas = '"a b c d"';
+      gridClass += ' grid-cols-4';
+      width = '56.5rem';
+      break;
+    case 'O':
+      gridTemplateAreas = '"a b" "c d"';
+      gridClass += ' grid-cols-2 grid-rows-2';
+      width = '27.5rem';
+      break;
+    case 'T':
+      gridTemplateAreas = '". a ." "b c d"';
+      gridClass += ' grid-cols-3 grid-rows-2';
+      width = '42rem';
+      break;
+    case 'S':
+      gridTemplateAreas = '". a b" "c d ."';
+      gridClass += ' grid-cols-3 grid-rows-2';
+      width = '42rem';
+      break;
+    case 'Z':
+      gridTemplateAreas = '"a b ." ". c d"';
+      gridClass += ' grid-cols-3 grid-rows-2';
+      width = '42rem';
+      break;
+    case 'L':
+      gridTemplateAreas = '". . a" "b c d"';
+      gridClass += ' grid-cols-3 grid-rows-2';
+      width = '42rem';
+      break;
+  }
+  return (
+    <div className={`${gridClass} tetris-group`} style={{ gridTemplateAreas, width }}>
+      {episodes.map((episode: Episode, idx: number) => (
+        <div key={idx} style={{ gridArea: String.fromCharCode(97 + idx) }}>
+          <EpisodeTile episode={episode} />
+        </div>
+      ))}
+    </div>
+  );
 };
 
-// I block (horizontal)
-layoutPatterns.I[0] = true;
-layoutPatterns.I[1] = true;
-layoutPatterns.I[2] = true;
-layoutPatterns.I[3] = true;
-
-// O block
-layoutPatterns.O[0] = true;
-layoutPatterns.O[1] = true;
-layoutPatterns.O[6] = true;
-layoutPatterns.O[7] = true;
-
-// T block
-layoutPatterns.T[1] = true;
-layoutPatterns.T[6] = true;
-layoutPatterns.T[7] = true;
-layoutPatterns.T[8] = true;
-
-// L block
-layoutPatterns.L[0] = true;
-layoutPatterns.L[6] = true;
-layoutPatterns.L[7] = true;
-layoutPatterns.L[8] = true;
-
-// J block
-layoutPatterns.J[2] = true;
-layoutPatterns.J[6] = true;
-layoutPatterns.J[7] = true;
-layoutPatterns.J[8] = true;
-
-// S block
-layoutPatterns.S[1] = true;
-layoutPatterns.S[2] = true;
-layoutPatterns.S[6] = true;
-layoutPatterns.S[7] = true;
-
-// Z block
-layoutPatterns.Z[0] = true;
-layoutPatterns.Z[1] = true;
-layoutPatterns.Z[7] = true;
-layoutPatterns.Z[8] = true;
-
-const patterns = ['I', 'O', 'T', 'L', 'J', 'S', 'Z'];
-const currentPatternIndex = 0;
-
 export default function Episodes() {
+  const groupsWrapperRef = useRef<HTMLDivElement | null>(null);
+  const groupsContainerRef = useRef<HTMLDivElement | null>(null);
+
+  useLayoutEffect(() => {
+    const wrapper = groupsWrapperRef.current;
+    const container = groupsContainerRef.current;
+    if (!wrapper || !container) {
+      return;
+    }
+
+    const ctx = gsap.context((self) => {
+      const groupElements =
+        (self.selector?.(".tetris-group") as HTMLElement[]) ??
+        gsap.utils.toArray<HTMLElement>(".tetris-group");
+
+      if (!groupElements.length) {
+        return;
+      }
+
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+
+      if (prefersReducedMotion) {
+        gsap.set(groupElements, { autoAlpha: 1, yPercent: 0 });
+        return;
+      }
+
+      gsap.set(groupElements, { autoAlpha: 0, yPercent: 60 });
+
+      const tl = gsap.timeline({
+        defaults: { ease: "power3.out", duration: 0.8 },
+        scrollTrigger: {
+          trigger: wrapper,
+          pin: true,
+          pinSpacing: true,
+          start: "top top",
+          end: () =>
+            `+=${Math.max(
+              window.innerHeight,
+              groupElements.length * 0.85 * window.innerHeight
+            )}`,
+          scrub: true,
+          anticipatePin: 1,
+          snap: {
+            snapTo: (value) => {
+              if (groupElements.length <= 1) {
+                return 0;
+              }
+              const step = 1 / (groupElements.length - 1);
+              const snapPoint = Math.round(value / step) * step;
+              return Math.min(1, Math.max(0, snapPoint));
+            },
+            duration: { min: 0.2, max: 0.5 },
+            ease: "power1.inOut",
+          },
+        },
+      });
+
+      groupElements.forEach((el, index) => {
+        tl.fromTo(
+          el,
+          { autoAlpha: 0, yPercent: 60 },
+          { autoAlpha: 1, yPercent: 0, immediateRender: false },
+          index * 0.6
+        );
+      });
+
+      requestAnimationFrame(() => ScrollTrigger.refresh());
+    }, container);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
     <div id="container" className="w-full flex flex-col gap-0">
@@ -269,19 +354,17 @@ export default function Episodes() {
                 className="flex flex-col gap-6
               md:flex-row"
               >
-                <div className="basis-10/12">
-                  <div className="grid gap-3 w-full max-w-4xl mx-auto grid-cols-6">
-                    {(() => {
-                      let episodeIndex = 0;
-                      return layoutPatterns[patterns[currentPatternIndex] as keyof typeof layoutPatterns].map((isEpisode, index) => {
-                        if (isEpisode && episodeIndex < episodes.length) {
-                          const episode = episodes[episodeIndex++];
-                          return <EpisodeTile key={index} episode={episode} />;
-                        } else {
-                          return <div key={index} className="aspect-square"></div>;
-                        }
-                      });
-                    })()}
+                <div
+                  ref={groupsWrapperRef}
+                  className="relative w-full mx-auto groups-pin-wrapper"
+                >
+                  <div
+                    ref={groupsContainerRef}
+                    className="flex flex-wrap gap-6 w-full mx-auto groups-container"
+                  >
+                    {groups.map((group, index) => (
+                      <TetrisGroup key={index} group={group} />
+                    ))}
                   </div>
                 </div>
               </div>

@@ -104,10 +104,11 @@ export default function Latest() {
       <div id="latest-container" className="p-4 xl:p-16">
         <div className="flex flex-col items-center justify-between w-full gap-6">
           <h2 className="text-lg uppercase font-bold">Latest Episodes</h2>
-          <div className="flex flex-row gap-3 overflow-x-auto">
+          <div className="flex flex-row gap-3">
             {episodesToRender.map((ep, i) => (
               <EpisodeTile key={i} episode={ep} />
             ))}
+
           </div>
           <Link href="/episodes" className="uppercase text-xl font-bold hover:underline hover:opacity-50 hover:cursor-pointer justify-self-center">
             To All Episodes
